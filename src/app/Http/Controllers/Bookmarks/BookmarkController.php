@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use App\Bookmark\UseCase\ShowBookmarkListPageUseCase;
+use App\Http\Requests\CreateBookmarkRequest;
 
 class BookmarkController extends Controller
 {
@@ -121,19 +122,8 @@ class BookmarkController extends Controller
      * @param Request $request
      * @return Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function create(Request $request)
+    public function create(CreateBookmarkRequest $request)
     {
-        if (Auth::guest()) {
-            // @note ここの処理はユーザープロフィールでも使われている
-            return redirect('/login');
-        }
-
-        Validator::make($request->all(), [
-            'url' => 'required|string|url',
-            'comment' => 'required|string|min:10|max:1000',
-            'category' => 'required|integer|exists:bookmark_categories,id',
-        ])->validate();
-
         // 下記のサービスでも同様のことが実現できる
         // @see https://www.linkpreview.net/
         $previewClient = new Client($request->url);
