@@ -3,7 +3,7 @@ namespace App\Lib\LinkPreview;
 
 use Cardei\LinkPreview\Client;
 
-final class LinkPreview
+final class LinkPreview implements LinkPreviewInterface
 {
     public function get(string $url): GetLinkPreviewResponse
     {
