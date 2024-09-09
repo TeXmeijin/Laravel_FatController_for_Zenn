@@ -13,7 +13,7 @@ services:
       STAGE: local
       DOMAINS: "localhost -> http://web"
     volumes:
-      - ./docker/https-portal/cert:/var/lib/https-portal
+      - ./docker/https-portal/cert:/var/lib/https-portal/localhost
     depends_on:
       - web
     restart: always

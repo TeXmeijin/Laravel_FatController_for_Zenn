@@ -2,6 +2,12 @@
 
 Zenn教材「LaravelでFat Controllerを卒業しよう」のリポジトリです。
 
+## FAQ
+
+Zennのスクラップまでコメントください。
+
+https://zenn.dev/meijin/scraps/a7ad1bae529ecb
+
 # 環境構築
 
 - 動作確認はMacBook Pro/Google Chromeにて行っています。
@@ -35,6 +41,18 @@ Zenn教材「LaravelでFat Controllerを卒業しよう」のリポジトリで�
 5. `docker-compose exec app php artisan db:seed`
 6. `docker-compose logs -f` ※コンテナのログをターミナルで見ることができます
 7. `docker-compose -f docker-compose.yml -f docker-compose.m1-mac.yml up down` ※作業を終了するときに使います
+
+### `Please provide a valid cache path.`エラーが表示された場合
+
+以下のコマンドを実行します。
+
+```shell
+docker compose exec app mkdir -p /opt/laravel-bookmark/storage
+docker compose exec app mkdir -p /opt/laravel-bookmark/storage/framework/sessions
+docker compose exec app mkdir -p /opt/laravel-bookmark/storage/framework/views
+docker compose exec app chown -R www-data:www-data /opt/laravel-bookmark/storage
+docker compose exec app chmod -R 775 /opt/laravel-bookmark/storage
+```
 
 ## ページ確認
 

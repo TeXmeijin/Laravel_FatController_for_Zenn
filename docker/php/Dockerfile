@@ -16,5 +16,6 @@ RUN apt-get update && \
 
 COPY ./php-fpm.d/zzz-www.conf /usr/local/etc/php-fpm.d/zzz-www.conf
 COPY ./php.ini /usr/local/etc/php/php.ini
+RUN sed -i "s/\${TZ}/Asia\/Tokyo/" /usr/local/etc/php/php.ini
 
 WORKDIR /opt/laravel-bookmark
